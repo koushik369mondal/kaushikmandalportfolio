@@ -8,6 +8,8 @@ export interface ProjectCardProps {
   techStack: string[];
   githubLink: string;
   liveLink: string;
+  featured?: boolean;
+  featureLabel?: string;
   index?: number;
 }
 
@@ -51,6 +53,8 @@ export default function ProjectCard({
   techStack,
   githubLink,
   liveLink,
+  featured = false,
+  featureLabel = "Featured",
   index = 0,
 }: ProjectCardProps) {
   const secondaryButtonClass =
@@ -66,19 +70,27 @@ export default function ProjectCard({
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.08 }}
       whileHover={{ y: -4, scale: 1.02 }}
-      className="project-shine group relative isolate overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 p-8 shadow-lg shadow-black/30 transition-all duration-300 ease-out hover:border-blue-400/50 hover:shadow-[0_18px_38px_-18px_rgba(99,102,241,0.48)] hover:ring-1 hover:ring-blue-400/40"
+      className={`project-shine group relative isolate h-full w-full min-h-75 overflow-hidden rounded-2xl border bg-zinc-900 p-8 shadow-lg shadow-black/30 transition-all duration-300 ease-out hover:border-blue-400/50 hover:shadow-[0_18px_38px_-18px_rgba(99,102,241,0.48)] hover:ring-1 hover:ring-blue-400/40 ${
+        featured ? "border-blue-400/40" : "border-white/10"
+      }`}
     >
       <div className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-b from-white/4 to-transparent" />
       <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 [background:radial-gradient(90%_70%_at_10%_0%,rgba(59,130,246,0.16),transparent_60%),radial-gradient(90%_80%_at_100%_100%,rgba(139,92,246,0.16),transparent_60%)]" />
       <div className="project-noise pointer-events-none absolute inset-0 opacity-[0.08]" />
       <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
 
-      <div className="relative z-10 flex h-full flex-col gap-6">
+      <div className="relative z-10 flex h-full flex-col justify-between gap-6">
+        {featured ? (
+          <div className="inline-flex w-fit items-center rounded-full border border-blue-300/40 bg-blue-500/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-100">
+            {featureLabel}
+          </div>
+        ) : null}
+
         <div className="space-y-3">
           <h3 className="text-2xl font-bold leading-tight tracking-wide text-white md:text-[1.7rem]">
             {title}
           </h3>
-          <p className="max-w-[56ch] text-sm leading-relaxed text-gray-300 md:text-base">
+          <p className="max-w-[56ch] overflow-hidden text-sm leading-relaxed text-gray-300 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] md:text-base">
             {description}
           </p>
         </div>

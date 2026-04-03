@@ -6,6 +6,35 @@ import ProjectCard, { ProjectCardProps } from "./ProjectCard";
 
 const projects: ProjectCardProps[] = [
   {
+    title: "WanderLust",
+    description:
+      "A full-stack travel listing platform where users can explore destinations, apply filters, and manage listings with an intuitive and responsive UI.",
+    techStack: [
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "EJS",
+      "Bootstrap",
+      "Map API",
+    ],
+    githubLink: "https://github.com/koushik369mondal/WanderLust",
+    liveLink: "https://wanderlust-fofm.onrender.com/listings",
+  },
+  {
+    title: "K Mondal Store 🛒",
+    description:
+      "A full-stack grocery e-commerce platform with category-based browsing, cart functionality, and responsive shopping flows.",
+    techStack: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+    ],
+    githubLink: "https://github.com/koushik369mondal/k-mondal-store",
+    liveLink: "https://k-mondal-store-frontend.onrender.com/",
+  },
+  {
     title: "Compiler Platform",
     description:
       "A full-stack coding platform with secure runtime execution, custom test cases, and near real-time submission insights.",
@@ -48,9 +77,11 @@ export default function Projects() {
           quality, and clean product design.
         </motion.p>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2 lg:gap-10">
           {projects.map((p, i) => (
-            <ProjectCard key={p.title} index={i} {...p} />
+            <div key={p.title} className="h-full w-full">
+              <ProjectCard index={i} {...p} />
+            </div>
           ))}
         </div>
       </div>
