@@ -37,27 +37,35 @@ body {
 .project-shine::before {
   content: "";
   position: absolute;
-  inset: -150% -40%;
-  background: linear-gradient(120deg,
-      transparent 35%,
-      rgba(255, 255, 255, 0.14) 50%,
-      transparent 65%);
-  transform: translateX(-35%) rotate(18deg);
+  inset: -85% -45%;
+  background: linear-gradient(115deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 62%);
+  transform: translateX(-34%) rotate(14deg);
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.28s ease;
 }
 
 .project-shine:hover::before {
   opacity: 1;
-  animation: cardShine 1.15s ease forwards;
+  animation: cardShine 0.9s ease-out forwards;
+}
+
+.project-noise {
+  background-image: repeating-linear-gradient(0deg,
+      rgba(255, 255, 255, 0.08) 0,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 3px);
 }
 
 @keyframes cardShine {
   from {
-    transform: translateX(-35%) rotate(18deg);
+    transform: translateX(-34%) rotate(14deg);
   }
 
   to {
-    transform: translateX(36%) rotate(18deg);
+    transform: translateX(34%) rotate(14deg);
   }
 }

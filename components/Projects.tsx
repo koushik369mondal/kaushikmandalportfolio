@@ -26,7 +26,8 @@ const projects: ProjectCardProps[] = [
 export default function Projects() {
   return (
     <SectionWrapper id="projects" centerContent={false}>
-      <div className="mx-auto w-full max-w-6xl">
+      <div className="relative mx-auto w-full max-w-6xl">
+        <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-72 w-[92%] -translate-x-1/2 rounded-full opacity-65 [background:radial-gradient(ellipse_at_center,rgba(37,99,235,0.22),rgba(15,23,42,0)_70%)]" />
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -47,7 +48,7 @@ export default function Projects() {
           quality, and clean product design.
         </motion.p>
 
-        <div className="grid grid-cols-1 gap-7 md:grid-cols-2 md:gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
           {projects.map((p, i) => (
             <ProjectCard key={p.title} index={i} {...p} />
           ))}

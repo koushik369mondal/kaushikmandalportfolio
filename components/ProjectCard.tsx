@@ -53,34 +53,40 @@ export default function ProjectCard({
   liveLink,
   index = 0,
 }: ProjectCardProps) {
+  const secondaryButtonClass =
+    "inline-flex items-center gap-2 rounded-lg border border-white/20 bg-zinc-900/70 px-4 py-2.5 text-sm font-semibold text-zinc-100 transition-all duration-300 ease-out hover:scale-[1.02] hover:brightness-110 hover:border-blue-400/60";
+
+  const primaryButtonClass =
+    "inline-flex items-center gap-2 rounded-lg bg-linear-to-r from-blue-500 to-violet-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/35 transition-all duration-300 ease-out hover:scale-[1.02] hover:brightness-110";
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.08 }}
-      whileHover={{ y: -8, scale: 1.01, rotateX: 1.2, rotateY: -1.2 }}
-      className="project-shine group relative isolate overflow-hidden rounded-2xl border border-white/15 bg-white/6 p-7 backdrop-blur-lg transition-all duration-500 hover:border-blue-400/55 hover:shadow-[0_22px_70px_-24px_rgba(66,153,225,0.5)]"
-      style={{ transformStyle: "preserve-3d" }}
+      whileHover={{ y: -4, scale: 1.02 }}
+      className="project-shine group relative isolate overflow-hidden rounded-2xl border border-white/10 bg-zinc-900 p-8 shadow-lg shadow-black/30 transition-all duration-300 ease-out hover:border-blue-400/50 hover:shadow-[0_18px_38px_-18px_rgba(99,102,241,0.48)] hover:ring-1 hover:ring-blue-400/40"
     >
-      <div className="pointer-events-none absolute -left-12 -top-16 h-44 w-44 rounded-full bg-linear-to-br from-blue-500/35 to-violet-500/25 blur-3xl transition-opacity duration-500 group-hover:opacity-95" />
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/45 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-b from-white/4 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 [background:radial-gradient(90%_70%_at_10%_0%,rgba(59,130,246,0.16),transparent_60%),radial-gradient(90%_80%_at_100%_100%,rgba(139,92,246,0.16),transparent_60%)]" />
+      <div className="project-noise pointer-events-none absolute inset-0 opacity-[0.08]" />
       <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
 
-      <div className="relative z-10 flex h-full flex-col gap-5">
+      <div className="relative z-10 flex h-full flex-col gap-6">
         <div className="space-y-3">
-          <h3 className="text-2xl font-bold leading-tight text-white md:text-3xl">
+          <h3 className="text-2xl font-bold leading-tight tracking-wide text-white md:text-[1.7rem]">
             {title}
           </h3>
-          <p className="text-sm leading-relaxed text-slate-300 md:text-base">
+          <p className="max-w-[56ch] text-sm leading-relaxed text-gray-300 md:text-base">
             {description}
           </p>
         </div>
 
-        <ul className="flex flex-wrap gap-2" aria-label={`${title} tech stack`}>
+        <ul className="flex flex-wrap gap-2.5" aria-label={`${title} tech stack`}>
           {techStack.map((tech) => (
             <li key={tech}>
-              <span className="rounded-full border border-blue-300/35 bg-blue-500/10 px-3 py-1 text-xs font-medium tracking-wide text-blue-100">
+              <span className="rounded-full border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-[11px] font-medium tracking-wide text-zinc-200">
                 {tech}
               </span>
             </li>
@@ -93,7 +99,7 @@ export default function ProjectCard({
             target="_blank"
             rel="noreferrer"
             aria-label={`View code for ${title} on GitHub`}
-            className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/5 px-4 py-2.5 text-sm font-semibold text-slate-100 transition-all duration-300 hover:scale-[1.03] hover:border-blue-300/70 hover:bg-blue-500/15"
+            className={secondaryButtonClass}
           >
             <GitHubIcon />
             View Code
@@ -103,7 +109,7 @@ export default function ProjectCard({
             target="_blank"
             rel="noreferrer"
             aria-label={`Open live demo for ${title}`}
-            className="inline-flex items-center gap-2 rounded-xl bg-linear-to-r from-blue-500 to-violet-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-800/40 transition-all duration-300 hover:scale-[1.03] hover:from-blue-400 hover:to-violet-400"
+            className={primaryButtonClass}
           >
             <ExternalLinkIcon />
             Live Demo
