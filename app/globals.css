@@ -33,3 +33,31 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.project-shine::before {
+  content: "";
+  position: absolute;
+  inset: -150% -40%;
+  background: linear-gradient(120deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.14) 50%,
+      transparent 65%);
+  transform: translateX(-35%) rotate(18deg);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.project-shine:hover::before {
+  opacity: 1;
+  animation: cardShine 1.15s ease forwards;
+}
+
+@keyframes cardShine {
+  from {
+    transform: translateX(-35%) rotate(18deg);
+  }
+
+  to {
+    transform: translateX(36%) rotate(18deg);
+  }
+}
