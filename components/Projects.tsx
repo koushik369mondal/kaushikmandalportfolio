@@ -33,6 +33,7 @@ const projects: ProjectCardProps[] = [
     ],
     githubLink: "https://github.com/koushik369mondal/k-mondal-store",
     liveLink: "https://k-mondal-store-frontend.onrender.com/",
+    backgroundImage: "/kMondalStore.png",
   },
   {
     title: "Compiler Platform",
@@ -77,7 +78,7 @@ export default function Projects() {
           quality, and clean product design.
         </motion.p>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2 lg:gap-10">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
             <div key={p.title} className="h-full w-full">
               <ProjectCard index={i} {...p} />

@@ -11,6 +11,7 @@ export interface ProjectCardProps {
   featured?: boolean;
   featureLabel?: string;
   index?: number;
+  backgroundImage?: string;
 }
 
 function GitHubIcon() {
@@ -56,12 +57,17 @@ export default function ProjectCard({
   featured = false,
   featureLabel = "Featured",
   index = 0,
+  backgroundImage,
 }: ProjectCardProps) {
+  const hasBackgroundImage = Boolean(backgroundImage);
+  const visibleTechStack = techStack.slice(0, 4);
+  const hiddenTechCount = Math.max(techStack.length - visibleTechStack.length, 0);
+
   const secondaryButtonClass =
-    "inline-flex items-center gap-2 rounded-lg border border-white/20 bg-zinc-900/70 px-4 py-2.5 text-sm font-semibold text-zinc-100 transition-all duration-300 ease-out hover:scale-[1.02] hover:brightness-110 hover:border-blue-400/60";
+    "inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-transparent px-3 py-1.5 text-sm font-medium text-zinc-100 transition-all duration-300 ease-in-out hover:border-blue-400/60 hover:bg-white/5";
 
   const primaryButtonClass =
-    "inline-flex items-center gap-2 rounded-lg bg-linear-to-r from-blue-500 to-violet-500 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-black/35 transition-all duration-300 ease-out hover:scale-[1.02] hover:brightness-110";
+    "inline-flex items-center justify-center gap-2 rounded-lg bg-linear-to-r from-blue-500 to-cyan-500 px-3 py-1.5 text-sm font-semibold text-white shadow-[0_10px_26px_-12px_rgba(56,189,248,0.7)] transition-all duration-300 ease-in-out hover:brightness-110";
 
   return (
     <motion.article
@@ -69,63 +75,95 @@ export default function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.55, ease: "easeOut", delay: index * 0.08 }}
-      whileHover={{ y: -4, scale: 1.02 }}
-      className={`project-shine group relative isolate h-full w-full min-h-75 overflow-hidden rounded-2xl border bg-zinc-900 p-8 shadow-lg shadow-black/30 transition-all duration-300 ease-out hover:border-blue-400/50 hover:shadow-[0_18px_38px_-18px_rgba(99,102,241,0.48)] hover:ring-1 hover:ring-blue-400/40 ${
+      whileHover={{ scale: 1.02 }}
+      className={`project-shine group relative isolate h-full min-h-90 w-full overflow-hidden rounded-2xl border bg-linear-to-br from-gray-900 to-gray-800 shadow-md transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-lg ${
         featured ? "border-blue-400/40" : "border-white/10"
       }`}
     >
-      <div className="pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-b from-white/4 to-transparent" />
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 [background:radial-gradient(90%_70%_at_10%_0%,rgba(59,130,246,0.16),transparent_60%),radial-gradient(90%_80%_at_100%_100%,rgba(139,92,246,0.16),transparent_60%)]" />
-      <div className="project-noise pointer-events-none absolute inset-0 opacity-[0.08]" />
-      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
-
-      <div className="relative z-10 flex h-full flex-col justify-between gap-6">
-        {featured ? (
-          <div className="inline-flex w-fit items-center rounded-full border border-blue-300/40 bg-blue-500/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-100">
-            {featureLabel}
-          </div>
-        ) : null}
-
-        <div className="space-y-3">
-          <h3 className="text-2xl font-bold leading-tight tracking-wide text-white md:text-[1.7rem]">
-            {title}
-          </h3>
-          <p className="max-w-[56ch] overflow-hidden text-sm leading-relaxed text-gray-300 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] md:text-base">
-            {description}
-          </p>
+      <div className="flex h-full flex-col">
+        <div className="relative h-44 overflow-hidden border-b border-white/10">
+          {hasBackgroundImage ? (
+            <>
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-300 ease-in-out group-hover:scale-105"
+                style={{ backgroundImage: `url('${backgroundImage}')` }}
+              />
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.85))",
+                }}
+              />
+              <div className="pointer-events-none absolute inset-0 bg-black/60" />
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-[radial-gradient(90%_70%_at_15%_10%,rgba(56,189,248,0.18),transparent_62%),radial-gradient(80%_80%_at_95%_100%,rgba(59,130,246,0.2),transparent_60%)]" />
+              <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-white/5 to-transparent" />
+            </>
+          )}
+          {featured ? (
+            <div className="relative z-10 m-4 inline-flex w-fit items-center rounded-full border border-blue-300/40 bg-blue-500/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-100 backdrop-blur-md">
+              {featureLabel}
+            </div>
+          ) : null}
         </div>
 
-        <ul className="flex flex-wrap gap-2.5" aria-label={`${title} tech stack`}>
-          {techStack.map((tech) => (
-            <li key={tech}>
-              <span className="rounded-full border border-zinc-700 bg-zinc-800 px-2.5 py-1 text-[11px] font-medium tracking-wide text-zinc-200">
-                {tech}
-              </span>
-            </li>
-          ))}
-        </ul>
+        <div className="relative z-10 flex h-full flex-1 flex-col justify-between gap-3 bg-white/5 p-4 backdrop-blur-md">
+          <div className="space-y-3">
+            <h3 className="max-w-[90%] wrap-break-word text-lg font-semibold text-white">
+              {title}
+            </h3>
+            <p
+              className="max-w-[90%] overflow-hidden text-ellipsis wrap-break-word text-sm leading-relaxed text-gray-400 [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:3]"
+              title={description}
+            >
+              {description}
+            </p>
+          </div>
 
-        <div className="mt-auto flex flex-wrap gap-3 pt-2">
-          <a
-            href={githubLink}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`View code for ${title} on GitHub`}
-            className={secondaryButtonClass}
-          >
-            <GitHubIcon />
-            View Code
-          </a>
-          <a
-            href={liveLink}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`Open live demo for ${title}`}
-            className={primaryButtonClass}
-          >
-            <ExternalLinkIcon />
-            Live Demo
-          </a>
+          <ul className="flex flex-wrap gap-2" aria-label={`${title} tech stack`}>
+            {visibleTechStack.map((tech) => (
+              <li key={tech}>
+                <span className="max-w-28 wrap-break-word rounded-full border border-white/15 bg-white/5 px-2 py-1 text-xs font-medium tracking-wide text-gray-300/90">
+                  {tech}
+                </span>
+              </li>
+            ))}
+            {hiddenTechCount > 0 ? (
+              <li>
+                <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-xs font-medium text-gray-500">
+                  +{hiddenTechCount} more
+                </span>
+              </li>
+            ) : null}
+          </ul>
+
+          <div className="mt-auto pt-3">
+            <div className="flex flex-wrap gap-2">
+            <a
+              href={githubLink}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`View code for ${title} on GitHub`}
+              className={secondaryButtonClass}
+            >
+              <GitHubIcon />
+              View Code
+            </a>
+            <a
+              href={liveLink}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Open live demo for ${title}`}
+              className={primaryButtonClass}
+            >
+              <ExternalLinkIcon />
+              Live Demo
+            </a>
+            </div>
+          </div>
         </div>
       </div>
     </motion.article>
