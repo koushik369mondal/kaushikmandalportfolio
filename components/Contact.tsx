@@ -36,14 +36,14 @@ export default function Contact() {
           variants={itemVariants}
           className="text-4xl md:text-5xl font-bold mb-6"
         >
-          Let's Connect
+          Let&apos;s Connect
         </motion.h2>
 
         <motion.p
           variants={itemVariants}
           className="text-gray-400 text-lg mb-8"
         >
-          Have a project in mind or want to collaborate? I'd love to hear from you!
+          Have a project in mind or want to collaborate? I&apos;d love to hear from you!
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex gap-4 justify-center flex-wrap">

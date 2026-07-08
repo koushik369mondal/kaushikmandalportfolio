@@ -37,7 +37,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent"
         >
-          Hi, I'm Koushik
+          Hi, I&apos;m Koushik
         </motion.h1>
         <motion.p
           variants={itemVariants}
