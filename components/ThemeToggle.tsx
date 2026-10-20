@@ -41,7 +41,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={toggleTheme}
       aria-label="Toggle theme"
       className={cn(
-        "group relative flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card/60 transition-colors hover:bg-card",
+        "group relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-border bg-card/60 transition-colors hover:bg-card",
         className
       )}
       title={isDark ? "Switch to light theme" : "Switch to dark theme"}
