@@ -33,15 +33,17 @@ export function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-12">
+      <div className="mx-auto flex max-w-[1536px] items-center justify-between px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 py-4">
         {/* Wordmark */}
         <a
           href="/"
-          className="group flex items-center gap-2 font-brand text-lg font-semibold tracking-tight text-foreground"
+          className="group flex items-center gap-2.5 font-brand text-lg font-semibold tracking-tight text-foreground"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-md border border-card-edge bg-card text-xs font-bold text-foreground transition-colors group-hover:border-foreground/30">
-            KM
-          </span>
+          <img
+            src="/logo.png"
+            alt="Kaushik Mandal logo"
+            className="size-8 rounded-full object-cover border border-card-edge transition-all duration-300 group-hover:scale-105 group-hover:border-foreground/40 shadow-sm"
+          />
           <span className="transition-colors group-hover:text-brand">
             Kaushik Mandal
           </span>

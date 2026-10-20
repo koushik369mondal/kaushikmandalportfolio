@@ -13,7 +13,7 @@ export default function App() {
     <div className="relative isolate flex min-h-screen flex-col justify-between overflow-x-clip">
       <Backdrop />
       <Navbar />
-      <main className="mx-auto w-full max-w-6xl flex-1 px-6 sm:px-12">
+      <main className="mx-auto w-full max-w-[1536px] flex-1 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         <div className="flex flex-col gap-y-4">
           <Hero />
           <About />

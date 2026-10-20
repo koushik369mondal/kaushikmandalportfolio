@@ -28,8 +28,12 @@ export function Projects() {
 
       {/* Grid of Cards */}
       <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {PROJECTS.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {PROJECTS.map((project, idx) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            featured={idx === PROJECTS.length - 1 && PROJECTS.length % 2 !== 0}
+          />
         ))}
       </div>
     </section>

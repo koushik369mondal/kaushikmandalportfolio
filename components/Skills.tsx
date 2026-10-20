@@ -1,5 +1,6 @@
 import { SKILL_CATEGORIES } from "@/data/portfolio";
 import { Code2, Database, Layout, Server, Wrench } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function Skills() {
   const getCategoryIcon = (index: number) => {
@@ -32,11 +33,15 @@ export function Skills() {
         </p>
       </div>
 
-      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-6">
         {SKILL_CATEGORIES.map((category, idx) => (
           <div
             key={category.title}
-            className="card-chai flex flex-col p-6 sm:p-7"
+            className={cn(
+              "card-chai flex flex-col p-6 sm:p-7",
+              idx < 3 ? "lg:col-span-2" : "lg:col-span-3",
+              idx === 4 ? "sm:col-span-2 lg:col-span-3" : ""
+            )}
           >
             <div className="flex items-center gap-2.5 border-b border-border/50 pb-3">
               <div className="flex size-8 items-center justify-center rounded-lg border border-border bg-card text-foreground">

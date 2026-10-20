@@ -5,9 +5,9 @@ import { PERSONAL_INFO } from "@/data/portfolio";
 export function Hero() {
   return (
     <section className="relative pt-12 pb-16 sm:pt-20 sm:pb-24">
-      <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between lg:gap-14">
         {/* Left Column */}
-        <div className="flex flex-col gap-y-4 md:w-3/5">
+        <div className="flex flex-col gap-y-4 md:w-3/5 lg:w-7/12">
           {/* ChaiUI signature animated badge with border glint */}
           <div className="relative inline-flex w-fit overflow-hidden rounded-full p-px">
             <span
@@ -85,13 +85,15 @@ export function Hero() {
         </div>
 
         {/* Right Column: One central card element in hero */}
-        <div className="md:w-2/5">
+        <div className="md:w-2/5 lg:w-5/12">
           <div className="card-chai relative overflow-hidden p-6 sm:p-7">
             <div className="flex items-center justify-between border-b border-border/60 pb-4">
               <div className="flex items-center gap-2.5">
-                <div className="flex size-9 items-center justify-center rounded-lg border border-border bg-background text-sm font-bold text-foreground">
-                  KM
-                </div>
+                <img
+                  src="/logo.png"
+                  alt="Kaushik Mandal"
+                  className="size-9 rounded-lg border border-border object-cover"
+                />
                 <div>
                   <h3 className="font-montserrat text-sm font-semibold text-foreground">
                     Kaushik Mandal

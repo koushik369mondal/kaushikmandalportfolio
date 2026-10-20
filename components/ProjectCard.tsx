@@ -3,7 +3,15 @@ import { Github } from "@/components/icons/Github";
 import type { Project } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  className,
+  featured,
+}: {
+  project: Project;
+  className?: string;
+  featured?: boolean;
+}) {
   const getStatusBadge = (status: Project["status"]) => {
     switch (status) {
       case "Completed":
@@ -28,10 +36,23 @@ export function ProjectCard({ project }: { project: Project }) {
   };
 
   return (
-    <article className="card-chai group flex flex-col overflow-hidden sm:opacity-90 sm:hover:opacity-100">
+    <article
+      className={cn(
+        "card-chai group flex flex-col overflow-hidden sm:opacity-90 sm:hover:opacity-100",
+        featured ? "md:col-span-2 md:flex-row" : "",
+        className
+      )}
+    >
       {/* Real project image if available */}
       {project.image ? (
-        <div className="relative aspect-video w-full overflow-hidden border-b border-border/40 bg-neutral-900">
+        <div
+          className={cn(
+            "relative w-full overflow-hidden border-b border-border/40 bg-neutral-900",
+            featured
+              ? "aspect-video md:aspect-auto md:w-5/12 md:border-b-0 md:border-r"
+              : "aspect-video"
+          )}
+        >
           <img
             src={project.image}
             alt={`${project.title} screenshot`}
@@ -41,7 +62,14 @@ export function ProjectCard({ project }: { project: Project }) {
           />
         </div>
       ) : (
-        <div className="flex aspect-video w-full flex-col justify-between border-b border-border/40 bg-card/60 p-6">
+        <div
+          className={cn(
+            "flex w-full flex-col justify-between border-b border-border/40 bg-card/60 p-6",
+            featured
+              ? "aspect-video md:aspect-auto md:w-5/12 md:border-b-0 md:border-r"
+              : "aspect-video"
+          )}
+        >
           <div className="flex items-center justify-between">
             <span className="font-mono text-xs text-neutral-500 dark:text-neutral-400">
               {project.category}
@@ -60,7 +88,7 @@ export function ProjectCard({ project }: { project: Project }) {
       )}
 
       {/* Card Body */}
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
+      <div className={cn("flex flex-1 flex-col p-5 sm:p-6", featured ? "justify-between" : "")}>
         <div className="flex items-start justify-between gap-3">
           <div>
             <h3 className="font-montserrat text-lg font-semibold text-foreground">

@@ -4,7 +4,7 @@ import { ArrowUpRight, Mail, ExternalLink, MessageSquare } from "lucide-react";
 export function Contact() {
   return (
     <section id="contact" className="py-16 sm:py-24 border-t border-border/40">
-      <div className="card-chai relative overflow-hidden p-8 sm:p-12 text-center max-w-3xl mx-auto">
+      <div className="card-chai relative overflow-hidden p-8 sm:p-12 text-center max-w-4xl mx-auto">
         <div className="space-y-4">
           <div className="inline-flex size-10 items-center justify-center rounded-xl border border-border bg-card text-foreground mx-auto">
             <Mail className="size-5" />
