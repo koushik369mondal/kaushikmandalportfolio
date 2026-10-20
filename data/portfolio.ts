@@ -58,6 +58,7 @@ export const PROJECTS: Project[] = [
     status: "Completed",
     githubUrl: "https://github.com/koushik369mondal/BookMyLocalService",
     liveUrl: "https://bookmylocalservice-web.onrender.com/",
+    image: "/BML.png",
     category: "Full-Stack Web App",
   },
   {

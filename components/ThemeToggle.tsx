@@ -5,13 +5,17 @@ export function ThemeToggle({ className }: { className?: string }) {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    const saved = localStorage.getItem("chaiui-theme");
-    if (saved === "light") {
-      setIsDark(false);
-      document.documentElement.classList.remove("dark");
-    } else {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
+    try {
+      const saved = localStorage.getItem("chaiui-theme");
+      if (saved === "light") {
+        setIsDark(false);
+        document.documentElement.classList.remove("dark");
+      } else {
+        setIsDark(true);
+        document.documentElement.classList.add("dark");
+      }
+    } catch {
+      // Safe fallback if localStorage is restricted
     }
   }, []);
 
@@ -20,10 +24,14 @@ export function ThemeToggle({ className }: { className?: string }) {
     setIsDark(nextDark);
     if (nextDark) {
       document.documentElement.classList.add("dark");
-      localStorage.setItem("chaiui-theme", "dark");
+      try {
+        localStorage.setItem("chaiui-theme", "dark");
+      } catch {}
     } else {
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("chaiui-theme", "light");
+      try {
+        localStorage.setItem("chaiui-theme", "light");
+      } catch {}
     }
   };
 

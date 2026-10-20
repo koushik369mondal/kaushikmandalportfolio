@@ -47,7 +47,7 @@ export function ProjectCard({
       {project.image ? (
         <div
           className={cn(
-            "relative w-full overflow-hidden border-b border-border/40 bg-neutral-900",
+            "relative flex items-center justify-center w-full overflow-hidden border-b border-border/40 bg-neutral-100 dark:bg-neutral-950",
             featured
               ? "aspect-video md:aspect-auto md:w-5/12 md:border-b-0 md:border-r"
               : "aspect-video"
@@ -58,7 +58,7 @@ export function ProjectCard({
             alt={`${project.title} screenshot`}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+            className="h-full w-full object-contain object-center transition-opacity duration-300 group-hover:opacity-95"
           />
         </div>
       ) : (
