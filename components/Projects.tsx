@@ -26,13 +26,12 @@ export function Projects() {
         </div>
       </div>
 
-      {/* Grid of Cards */}
-      <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {PROJECTS.map((project, idx) => (
+      {/* Grid of Cards: 1 col on mobile, 2 cols on desktop, 3 cols on large screens */}
+      <div className="mt-6 sm:mt-8 grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {PROJECTS.map((project) => (
           <ProjectCard
             key={project.id}
             project={project}
-            featured={idx === PROJECTS.length - 1 && PROJECTS.length % 2 !== 0}
           />
         ))}
       </div>
