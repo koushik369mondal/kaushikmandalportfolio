@@ -128,6 +128,7 @@ export const PROJECTS: Project[] = [
     ],
     technologies: ["Python", "JavaScript", "FinTech APIs", "System Architecture"],
     status: "In Development",
+    githubUrl: "https://github.com/koushik369mondal/PickMyStock.git",
     category: "FinTech Platform",
   },
 ];
